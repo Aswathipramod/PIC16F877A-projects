@@ -1,0 +1,84 @@
+# PIC16F877A LCD 8-Bit Interface
+
+This project demonstrates how to interface a **16x2 LCD** with the **PIC16F877A** microcontroller using **8-bit mode**. The program initializes the LCD and continuously displays the message **"WELCOME"**.
+
+## Features
+
+- 8-bit LCD interfacing
+- LCD initialization
+- Command and data transmission functions
+- Displays "WELCOME" on the LCD
+- Written in Embedded C using MPLAB XC8 Compiler
+
+## Hardware Requirements
+
+- PIC16F877A Microcontroller
+- 16x2 LCD Display (HD44780 Compatible)
+- 20 MHz Crystal Oscillator
+- Two 22 pF Capacitors
+- 5V Power Supply
+- Breadboard and Connecting Wires
+
+## Pin Connections
+
+| LCD Pin | PIC16F877A Pin |
+|---------|----------------|
+| D0-D7   | PORTD          |
+| RS      | RB4            |
+| RW      | RB6            |
+| EN      | RB5            |
+| VSS     | GND            |
+| VDD     | +5V            |
+| VEE     | Contrast Potentiometer |
+
+## Software Requirements
+
+- MPLAB X IDE
+- XC8 Compiler
+- PIC16F877A
+
+## Project Structure
+
+```
+lcd8bit.c
+README.md
+```
+
+## Program Flow
+
+1. Configure PORTD as LCD data pins.
+2. Configure RB4, RB5, and RB6 as control pins.
+3. Initialize the LCD.
+4. Move the cursor to the desired position.
+5. Display the string **"WELCOME"**.
+6. Repeat continuously.
+
+## Functions
+
+### `lcd_init()`
+Initializes the LCD in 8-bit mode.
+
+### `cmd(unsigned char a)`
+Sends command instructions to the LCD.
+
+### `dat(unsigned char b)`
+Sends character data to the LCD.
+
+### `show(unsigned char *s)`
+Displays a complete string on the LCD.
+
+## Output
+
+The LCD displays:
+
+```
+     WELCOME
+```
+
+## Configuration
+
+- Oscillator: 20 MHz HS Crystal
+- Watchdog Timer: Disabled
+- Brown-out Reset: Disabled
+- Low Voltage Programming: Disabled
+
