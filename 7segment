@@ -1,0 +1,87 @@
+# PIC16F877A 7-Segment Display Counter
+
+This project demonstrates how to interface a **single 7-segment display** with the **PIC16F877A** microcontroller using **PORTC**. The program displays digits from **0 to 9**, changing every second.
+
+## Features
+
+- Displays digits **0–9** sequentially.
+- 1-second delay between each digit.
+- Uses a lookup table for segment patterns.
+- Written in Embedded C using the **MPLAB XC8 Compiler**.
+
+## Hardware Requirements
+
+- PIC16F877A Microcontroller
+- Common Anode 7-Segment Display
+- Current-limiting resistors (220Ω–330Ω)
+- 20 MHz Crystal Oscillator
+- Two 22 pF Capacitors
+- 5V Power Supply
+- Breadboard and Connecting Wires
+
+## Pin Connections
+
+| 7-Segment Pin | PIC16F877A |
+|---------------|------------|
+| a–g, dp       | PORTC (RC0–RC7) |
+
+> **Note:** The segment values in the program are for a **Common Anode** 7-segment display.
+
+## Software Requirements
+
+- MPLAB X IDE
+- XC8 Compiler
+
+## Project Structure
+
+```
+7segment.c
+README.md
+```
+
+## Program Flow
+
+1. Configure **PORTC** as output.
+2. Store the segment patterns for digits **0–9** in an array.
+3. Display each digit on the 7-segment display.
+4. Wait for 1 second.
+5. Repeat the sequence continuously.
+
+## Code Overview
+
+### Segment Pattern Array
+
+```c
+char val[] = {
+    0xC0, // 0
+    0xF9, // 1
+    0xA4, // 2
+    0xB0, // 3
+    0x99, // 4
+    0x92, // 5
+    0x82, // 6
+    0xF8, // 7
+    0x80, // 8
+    0x90  // 9
+};
+```
+
+These hexadecimal values correspond to the segment patterns required to display digits **0–9** on a **Common Anode** 7-segment display.
+
+## Output
+
+The display continuously counts:
+
+```
+0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9
+```
+
+Each digit remains on the display for **1 second** before moving to the next digit.
+
+## Configuration
+
+- Microcontroller: PIC16F877A
+- Oscillator: 20 MHz (HS Mode)
+- Compiler: XC8
+- IDE: MPLAB X
+
