@@ -1,0 +1,128 @@
+# PIC16F877A Password Authentication System
+
+This project implements a simple password authentication system using the **PIC16F877A** microcontroller, a **4×3 matrix keypad**, and a **16×2 LCD**. The user enters a 4-digit password through the keypad, and the system verifies it against a predefined password. Depending on the result, the LCD displays either **"Access Granted"** or **"Access Denied"**.
+
+## Features
+
+- 4-digit password authentication
+- Password masking using `*`
+- 4×3 matrix keypad interface
+- 16×2 LCD display interface
+- Displays authentication result
+- Automatically resets after each attempt
+
+## Hardware Requirements
+
+- PIC16F877A Microcontroller
+- 16×2 LCD (HD44780 Compatible)
+- 4×3 Matrix Keypad
+- 20 MHz Crystal Oscillator
+- Two 22 pF Capacitors
+- 5V Power Supply
+- Breadboard and Connecting Wires
+
+## Pin Connections
+
+### LCD Connections
+
+| LCD Pin | PIC16F877A Pin |
+|----------|----------------|
+| D0–D7    | PORTC          |
+| RS       | RD0            |
+| RW       | RD1            |
+| EN       | RD2            |
+
+### Keypad Connections
+
+| Keypad Pin | PIC16F877A Pin |
+|-------------|----------------|
+| Column 1    | RB0 |
+| Column 2    | RB1 |
+| Column 3    | RB2 |
+| Row 1       | RB4 |
+| Row 2       | RB5 |
+| Row 3       | RB6 |
+| Row 4       | RB7 |
+
+## Software Requirements
+
+- MPLAB X IDE
+- XC8 Compiler
+
+## Project Structure
+
+```
+password_lock.c
+README.md
+```
+
+## Working Principle
+
+1. Initialize the LCD.
+2. Display the message **"Enter Password:"**.
+3. Scan the keypad for key presses.
+4. Display `*` for each entered digit.
+5. Compare the entered password with the predefined password.
+6. Display:
+   - **Access Granted** if the password is correct.
+   - **Access Denied** if the password is incorrect.
+7. Clear the display and wait for the next password entry.
+
+## Default Password
+
+```
+1234
+```
+
+You can change the password by modifying the following line in the source code:
+
+```c
+char password[] = "1234";
+```
+
+## Functions
+
+| Function | Description |
+|----------|-------------|
+| `lcd_init()` | Initializes the LCD |
+| `lcd_cmd()` | Sends commands to the LCD |
+| `lcd_data()` | Sends characters to the LCD |
+| `lcd_string()` | Displays a string on the LCD |
+| `keypad()` | Scans the keypad and reads user input |
+| `check_password()` | Compares the entered password with the predefined password |
+
+## Example Output
+
+### Correct Password
+
+```
+Enter Password:
+****
+
+Access Granted
+```
+
+### Incorrect Password
+
+```
+Enter Password:
+****
+
+Access Denied
+```
+
+## Configuration
+
+- **Microcontroller:** PIC16F877A
+- **Clock Frequency:** 20 MHz
+- **Compiler:** XC8
+- **IDE:** MPLAB X
+
+## Future Improvements
+
+- Store password in EEPROM
+- Add password change functionality
+- Interface a relay or servo motor for door lock control
+- Add buzzer alarm for multiple incorrect attempts
+- Implement user authentication using RFID or fingerprint sensor
+
